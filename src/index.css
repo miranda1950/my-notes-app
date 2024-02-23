@@ -38,12 +38,21 @@ body {
 }
 
 .note {
-  background: #fff;
+  background: #ffd901;
   border-radius: 2px;
-  box-shadow: 0 2px 5px #ccc;
+  box-shadow: 0 2px 5px #000000;
   padding: 5px;
   width: 200px;
   float: left;
+  border-end-end-radius: 40px 50px;
+}
+
+.input {
+  width: 200px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 0;
+  box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
 }
 
 .save-button {
@@ -51,7 +60,7 @@ body {
   color: rgb(37, 167, 206);
   border: none;
   height: 36px;
-  border-radius: 4;
+  border-radius: 40px;
   cursor: pointer;
   outline: none;
   margin-top: 20px;

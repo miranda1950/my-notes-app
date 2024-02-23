@@ -24,6 +24,7 @@ function Container() {
     <div>
       <h1 className="notes_label">Title</h1>
       <input
+        className="input"
         type="text"
         placeholder="Title of note"
         value={title}
@@ -31,6 +32,7 @@ function Container() {
       ></input>
       <h1 className="notes_label">Content</h1>
       <input
+        className="input"
         type="text"
         placeholder="Content"
         value={content}
@@ -44,8 +46,8 @@ function Container() {
           Save
         </button>
       </div>
-      {notes.map((note) => (
-        <Notes noteObject={note} key={note.title} />
+      {notes.map((note, i) => (
+        <Notes noteObject={note} index={i} key={note.title} />
       ))}
     </div>
   );
@@ -58,7 +60,7 @@ function Container() {
       title: title,
       content: content,
       createdAt: Date.now(),
-      updatedAt: null,
+      updatedAt: Date.now(),
     };
     const hours = new Date().getHours();
     console.log(hours);
@@ -68,7 +70,7 @@ function Container() {
   }
 }
 
-function Notes({ noteObject }: { noteObject: Note }) {
+function Notes({ noteObject, index }: { noteObject: Note; index: number }) {
   const [selectedId, setSelectedId] = useState<string | null>(null);
 
   function handleClick(id: string) {
@@ -76,21 +78,22 @@ function Notes({ noteObject }: { noteObject: Note }) {
   }
   return (
     <div onClick={() => handleClick(noteObject.id)}>
-      <h2>Note </h2>
+      <h2>Post It: {index} </h2>
       <div className="note">
-        <p>{noteObject.title}</p>
-        {noteObject.id === selectedId ? (
-          <>
-            <p>{noteObject.content}</p>
-            <p>Created at: {new Date(noteObject.createdAt).toLocaleString()}</p>
-            <button onClick={handleEditNote}>Edit note</button>
-          </>
-        ) : null}
+        <div>
+          <p>{noteObject.title}</p>
+          {noteObject.id === selectedId ? (
+            <>
+              <p>{noteObject.content}</p>
+              <p>
+                Created at: {new Date(noteObject.createdAt).toLocaleString()}
+              </p>
+            </>
+          ) : null}
+        </div>
       </div>
     </div>
   );
-
-  function handleEditNote() {}
 }
 
 interface Note {
